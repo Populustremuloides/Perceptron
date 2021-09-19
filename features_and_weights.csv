@@ -1,0 +1,18 @@
+feature,weight/importance
+"'synfuels-corporation-cutback' { 'n', 'y'}",-0.4
+"'synfuels-corporation-cutback' { 'n', 'y'}",-0.4
+"'export-administration-act-south-africa' { 'n', 'y'}",-0.30000000000000004
+"'export-administration-act-south-africa' { 'n', 'y'}",-0.30000000000000004
+bias (arbitrary),-0.20000000000000004
+"'duty-free-exports' { 'n', 'y'}",-0.2
+"'duty-free-exports' { 'n', 'y'}",-0.2
+"'crime' { 'n', 'y'}",-0.1
+"'crime' { 'n', 'y'}",-0.1
+"'crime' { 'n', 'y'}",-0.1
+"'superfund-right-to-sue' { 'n', 'y'}",0.1
+"'superfund-right-to-sue' { 'n', 'y'}",0.1
+"'aid-to-nicaraguan-contras' { 'n', 'y'}",0.2
+"'water-project-cost-sharing' { 'n', 'y'}",0.20000000000000004
+"'immigration' { 'n', 'y'}",0.30000000000000004
+"'immigration' { 'n', 'y'}",0.30000000000000004
+"'physician-fee-freeze' { 'n', 'y'}",0.6
