@@ -17,8 +17,8 @@ data handling functions than in main.'''
 
 def main():
 
-    '''
     # section 1.1.1
+
     df = readArff(debugFile)
     model = Perceptron(shuffle=False, deterministic=10, learningRate=0.1)
     features = list(df.columns[:2])
@@ -191,8 +191,8 @@ def main():
     print(trainScore)
     print("sklearn test score")
     print(testScore)
-    '''
 
+    # 4.2
     stuff = skd.load_iris()
     #X, y = sklearn.datasets.load_iris()
     X = stuff["data"]
