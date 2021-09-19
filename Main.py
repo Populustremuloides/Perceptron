@@ -221,6 +221,25 @@ def main():
     print("SKlearn breast cancer test score: ")
     print(testScore)
 
+    model = skPerceptron(fit_intercept=False)
+    model.fit(Xtrain, ytrain)
+    trainScore = model.score(Xtrain, ytrain)
+    testScore = model.score(Xtest, ytest)
+    print("SKlearn breats cancer train score without intercept: ")
+    print(trainScore)
+    print("SKlearn breast cancer test score without intercept: ")
+    print(testScore)
+
+    model = skPerceptron(alpha=0.001)
+    model.fit(Xtrain, ytrain)
+    trainScore = model.score(Xtrain, ytrain)
+    testScore = model.score(Xtest, ytest)
+    print("SKlearn breats cancer train score without increased alpha: ")
+    print(trainScore)
+    print("SKlearn breast cancer test score with increased alpha: ")
+    print(testScore)
+
+
 if __name__ == "__main__":
 
     main()
