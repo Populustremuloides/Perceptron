@@ -94,3 +94,22 @@ def splitTrainTest(df, seed):
     testDf = testDf.drop("indices", axis=1)
 
     return trainDf, testDf
+
+def splitTrainTestNumpy(X, y):
+    y = np.asarray(y)
+    indices = np.arange(y.shape[0])
+
+    np.random.shuffle(indices)
+    cutoff = round(0.8 * len(indices))
+
+    trainIndices = indices[:cutoff]
+    testIndices = indices[cutoff:]
+
+    Xtrain = X[trainIndices]
+    Xtest = X[testIndices]
+
+    ytrain = y[trainIndices]
+    ytest = y[testIndices]
+
+    return Xtrain, Xtest, ytrain, ytest
+

@@ -1,8 +1,12 @@
-from Arff import readArff, splitTrainTest
+from Arff import readArff, splitTrainTest, splitTrainTestNumpy
 from Model import Perceptron
 from MakeFakeData import makeData, getLineSample
 import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.linear_model import Perceptron as skPerceptron
+
+from sklearn import datasets as skd
+import numpy as np
 
 debugFile = "debug_dataset.arff"
 evaluationFile = "data_banknote_authentication_validation.arff"
@@ -106,7 +110,7 @@ def main():
     plt.legend()
     plt.show()
 
-    '''
+
 
     # Section 3
     df = readArff(votingFile)
@@ -150,6 +154,7 @@ def main():
     outDf2 = pd.DataFrame.from_dict(dataDict)
     outDf2.to_csv("features_and_weights.csv", index=False)
 
+    # 3.3
     missclassification = []
     for item in outDf["test_accuracy"]:
         missclassification.append(1 - item)
@@ -158,6 +163,63 @@ def main():
     plt.ylabel("misclassification rate (proportion)")
     plt.title("Perceptron Test Set Misclassification vs. Epochs")
     plt.show()
+
+
+    # 4.1
+
+    df = readArff(votingFile)
+    testDf, trainDf = splitTrainTest(df, seed=0)
+    features = list(trainDf.columns[:len(trainDf.columns) - 1])
+    target = df.columns[-1]
+
+    x_test = testDf[features]
+    x_train = trainDf[features]
+
+    x_test = x_test.to_numpy()
+    x_train = x_train.to_numpy()
+
+    y_test = np.asarray(list(testDf[target]))
+    y_train = np.asarray(list(trainDf[target]))
+
+    model = skPerceptron()
+
+    model.fit(x_train, y_train)
+    trainScore = model.score(x_train, y_train)
+    testScore = model.score(x_test, y_test)
+
+    print("sklearn train score")
+    print(trainScore)
+    print("sklearn test score")
+    print(testScore)
+    '''
+
+    stuff = skd.load_iris()
+    #X, y = sklearn.datasets.load_iris()
+    X = stuff["data"]
+    y = stuff["target"]
+    Xtrain, Xtest, ytrain, ytest = splitTrainTestNumpy(X, y)
+    model = skPerceptron()
+    model.fit(Xtrain, ytrain)
+    trainScore = model.score(Xtrain, ytrain)
+    testScore = model.score(Xtest, ytest)
+    print("SKlearn Iris train score: ")
+    print(trainScore)
+    print("SKlearn Iris test score: ")
+    print(testScore)
+
+
+    stuff = skd.load_breast_cancer()
+    X = stuff["data"]
+    y = stuff["target"]
+    Xtrain, Xtest, ytrain, ytest = splitTrainTestNumpy(X, y)
+    model = skPerceptron()
+    model.fit(Xtrain, ytrain)
+    trainScore = model.score(Xtrain, ytrain)
+    testScore = model.score(Xtest, ytest)
+    print("SKlearn breats cancer train score: ")
+    print(trainScore)
+    print("SKlearn breast cancer test score: ")
+    print(testScore)
 
 if __name__ == "__main__":
 
